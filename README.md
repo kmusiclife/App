@@ -8,10 +8,21 @@ add some bundles in composer.json
         "friendsofsymfony/user-bundle": "dev-master",
         "friendsofsymfony/facebook-bundle": "dev-master"
 ```
+
+composer.phar update/install 
+
+``` shell
+# php composer.phar update 
+# php composer.phar install
+```
+
+[ [Facebook Developers](https://developers.facebook.com/apps "Facebook Developers") ]
+You must register your application on facebook developers site before edit app/config/config.yml because you need couple of keys(App ID, Secret Key). 
+Then You must full out facebook dev. forms: "App Domains" and "Website with Facebook Login"
+
 edit app/config/config.yml
 
 ``` yaml
-
 # app/config/config.yml
 
 imports:
@@ -247,3 +258,15 @@ AppUploadBundle:
     prefix:   /
 
 ```
+
+schema update & change the permission for uploads and media directories
+
+``` shell
+# php app/console doctrine:schema:update --force
+# mkdir web/uploads
+# mkdir web/media
+# chmod 777 web/uploads
+# chmod 777 web/media
+```
+
+
