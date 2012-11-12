@@ -261,12 +261,12 @@ AppUploadBundle:
 
 schema update & change the permission for uploads and media directories
 
-``` shell
+```
 # php app/console doctrine:schema:update --force
 # mkdir web/uploads
 # mkdir web/media
 # chmod 777 web/uploads
 # chmod 777 web/media
+# php app/console assets:install
+# php app/console assetic:dump
 ```
-
-
