@@ -1,0 +1,25 @@
+upload:
+    pattern:  /
+    defaults: { _controller: "AppUploadBundle:Image:index" }
+    requirements: { _method: get }
+
+upload_create:
+    pattern:  /create
+    defaults: { _controller: "AppUploadBundle:Image:create" }
+    requirements: { _method: post }
+
+upload_list:
+    pattern:  /list
+    defaults: { _controller: "AppUploadBundle:Image:list" }
+    requirements: { _method: get }
+
+upload_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "AppUploadBundle:Image:delete" }
+    requirements: { _method: delete }
+
+app_upload_main_js:
+    pattern: /js/jquery.upload.main.js
+    defaults:  { _controller: "AppUploadBundle:Image:js" }
+    requirements: { _method: get }
+    

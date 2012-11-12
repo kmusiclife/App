@@ -1,0 +1,4 @@
+AppUploadBundle_upload:
+    resource: "@AppUploadBundle/Resources/config/routing/image.yml"
+    prefix:   /upload/image
+

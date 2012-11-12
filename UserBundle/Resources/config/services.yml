@@ -1,0 +1,43 @@
+parameters:
+#    app_user.example.class: App\UserBundle\Example
+
+services:
+#    app_user.example:
+#        class: %app_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    
+    app_user.registration.form.type:
+        class: App\UserBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: app_user_registration }
+    
+    app_user.form.handler.registration:
+        class: App\UserBundle\Form\Handler\RegistrationFormHandler
+        arguments: ["@fos_user.registration.form", "@request", "@fos_user.user_manager", "@fos_user.mailer", "@fos_user.util.token_generator"]
+        scope: request
+        public: false
+
+    app_user.profile.form.type:
+        class: App\UserBundle\Form\Type\ProfileFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: app_user_profile }
+    
+    app_user.form.handler.profile:
+        class: App\UserBundle\Form\Handler\ProfileFormHandler
+        arguments: ["@fos_user.profile.form", "@request", "@fos_user.user_manager"]
+        scope: request
+        public: false
+
+    app_user.change_password.form.type:
+        class: App\UserBundle\Form\Type\ChangePasswordFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: app_user_change_password }
+            
+    app_user.form.handler.change_password:
+        class: App\UserBundle\Form\Handler\ChangePasswordFormHandler
+        arguments: ["@fos_user.change_password.form", "@request", "@fos_user.user_manager"]
+        scope: request
+        public: false

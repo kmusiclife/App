@@ -1,0 +1,68 @@
+$(function () {
+    'use strict';
+
+    $('#fileupload').fileupload({
+        url: '{{ path('upload_create')|raw }}',
+        url_list: '{{ path('upload_list')|raw }}',
+    });
+    $('#fileupload').fileupload(
+        'option',
+        'redirect',
+        window.location.href.replace(
+            /\/[^\/]*$/,
+            '/cors/result.html?%s'
+        )
+    );
+    // window.location.hostname === 'yourhost'
+    if (window.location.hostname) {
+        $('#fileupload').fileupload('option', {
+            maxFileSize: 5000000,
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+            prependFiles: true,
+            process: [
+                {
+                    action: 'load',
+                    fileTypes: /^image\/(gif|jpeg|png)$/,
+                    maxFileSize: 20000000 // 20MB
+                },
+                {
+                    action: 'resize',
+                    maxWidth: 1440,
+                    maxHeight: 900
+                },
+                {
+                    action: 'save'
+                }
+            ]
+        }).bind('fileuploaddestroy', function (e, data) {
+            $('.fileupload-loading').show();
+        }).bind('fileuploaddestroyed', function (e, data) {
+            console.log(data);
+            $('.fileupload-loading').hide();
+        });
+        
+        $.ajax({
+            url: $('#fileupload').fileupload('option', 'url_list'),
+            dataType: 'json',
+            context: $('#fileupload')[0],
+            beforeSend: function(jqXHR, settings){
+                $('.fileupload-loading').show();
+            },
+            complete: function(jqXHR, settings){
+                $('.fileupload-loading').hide();
+            }
+        }).done(function (result) {
+            if (result && result.length) {
+                $(this).fileupload('option', 'done')
+                    .call(this, null, {result: result});
+            }
+        });
+
+        
+    } else {
+        
+        // cross domain
+        
+    }
+
+});

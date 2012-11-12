@@ -1,0 +1,37 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+<script>
+  function onFbInit() {
+      if (typeof(FB) != 'undefined' && FB != null ) {
+          FB.Event.subscribe('auth.statusChange', function(response) {
+              if (response.session || response.authResponse) {
+                  setTimeout(goLogIn, 100);
+              } else {
+                  window.location.href = "{{ path('_security_disconnect') }}";
+              }
+          });
+      }
+  }
+  function goLogIn(){
+      window.location.href = "{{ path('_security_connect') }}";
+  }
+  function goLogOut(){
+      window.location.href = "{{ path('_security_disconnect') }}";
+  }
+</script>
+
+
+{{ facebook_initialize({'xfbml': true, 'fbAsyncInit': 'onFbInit();'}) }}
+
+{% if(app.user.facebookId) %}
+<span id="fbLogout" onclick="goLogOut()"><a class="fb_button fb_button_medium"><span class="fb_button_text">{{ 'app_user.facebook.button.disconnect'|trans({}, 'AppUserBundle') }}</span></a></span>
+{% else %}
+{{ facebook_login_button({'autologoutlink': false, 'label' : 'app_user.facebook.button.connect'|trans({}, 'AppUserBundle')}) }}
+{% endif %}
+
+
+{% include "FOSUserBundle:Profile:show_content.html.twig" %}
+{% endblock fos_user_content %}
+

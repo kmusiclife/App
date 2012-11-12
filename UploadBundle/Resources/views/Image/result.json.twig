@@ -1,0 +1,15 @@
+[
+{% set jsons = [] %}
+{% for entity in entities %}
+{
+  "url": "{{ entity.uploadpath }}",
+  "name": "{{ entity.title }}",
+  "size": {{ entity.size }},
+  "type": "{{ entity.type }}",
+  "thumbnail_url": "{{ entity.uploadpath|imagine_filter('thumbnail80px') }}",
+  "delete_url": "{{ path('upload_delete', {'id':entity.id}) }}",
+  "delete_type": "DELETE"
+}
+{% if loop.index != loop.length %},{% endif %}
+{% endfor %}
+]
