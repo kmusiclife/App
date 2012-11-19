@@ -37,7 +37,6 @@ $(function () {
         }).bind('fileuploaddestroy', function (e, data) {
             $('.fileupload-loading').show();
         }).bind('fileuploaddestroyed', function (e, data) {
-            console.log(data);
             $('.fileupload-loading').hide();
         });
         

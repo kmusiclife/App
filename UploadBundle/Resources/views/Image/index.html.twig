@@ -4,9 +4,7 @@
 {% block title %}{{ 'app_upload.layout.image.title.new'|trans({}, 'AppUploadBundle') }}{% endblock %}
 {% block stylesheets%}
 
-<!--
 <link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap.min.css">
--->
 <!-- Bootstrap CSS fixes for IE6 -->
 <!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
 {% stylesheets filter='cssrewrite' 
@@ -18,6 +16,7 @@
 {% endblock %}
 
 {% block javascripts%}
+<script src="http://code.jquery.com/jquery-latest.pack.js"></script>
 <script src="http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"></script>
 <script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
 <script src="http://blueimp.github.com/JavaScript-Canvas-to-Blob/canvas-to-blob.min.js"></script>
