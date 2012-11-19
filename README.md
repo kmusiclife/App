@@ -169,12 +169,54 @@ services:
             - { name: kernel.event_listener, event: security.interactive_login, method: setLocaleForAuthenticatedUser }
             - { name: kernel.event_listener, event: kernel.request, method: setLocaleForUnauthenticatedUser }
             
+    app_common.twig.extension:
+        class: App\CommonBundle\Twig\CommonExtension
+        tags:
+            - { name: twig.extension }
+        public: true
+    
 liip_imagine:
     filter_sets:
+        
+        thumbnail150px:
+            quality: 75
+            filters:
+                thumbnail: { size: [150, 150], mode: inset }
+
+        thumbnail250px:
+            quality: 75
+            filters:
+                thumbnail: { size: [250, 250], mode: inset }
+
+        thumbnail500px:
+            quality: 90
+            filters:
+                thumbnail: { size: [500, 500], mode: inset }
+
+        thumbnail700px:
+            quality: 90
+            filters:
+                thumbnail: { size: [700, 700], mode: inset }
+
+        thumbnail750px:
+            quality: 80
+            filters:
+                thumbnail: { size: [750, 750], mode: inset }
+                
         thumbnail80px:
             quality: 75
             filters:
                 thumbnail: { size: [80, 80], mode: inset }
+
+        square150px:
+            quality: 90
+            filters:
+                thumbnail: { size: [150, 150], mode: outbound }
+
+        square25px:
+            quality: 50
+            filters:
+                thumbnail: { size: [25, 25], mode: outbound }
         square50px:
             quality: 50
             filters:
