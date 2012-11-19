@@ -282,7 +282,7 @@ edit app/AppKernel.php
             new Liip\ImagineBundle\LiipImagineBundle(),
             new App\UserBundle\AppUserBundle(),
             new App\UploadBundle\AppUploadBundle(),
-            new App\CommonBundle\AppCommonBUndle(),
+            new App\CommonBundle\AppCommonBundle(),
 ```            
 
 edit app/config/routing.yml
