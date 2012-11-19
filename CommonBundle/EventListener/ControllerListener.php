@@ -5,6 +5,7 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use App\UserBundle\Entity\User;
 
 class ControllerListener
 {
@@ -20,7 +21,10 @@ class ControllerListener
     {
 
         $entity = $args->getEntity();
-                
+        
+        if(property_exists($entity, 'parentUser')){
+            $entity->setParentUser(null);
+        }
         if (property_exists($entity, 'createdUser')) {
             $user = $this->container->get('security.context')->getToken()->getUser();
             $entity->setCreatedUser($user);
@@ -41,6 +45,10 @@ class ControllerListener
         
         $recompute = false;
         
+        if(property_exists($entity, 'parentUser')){
+            $user = new User();
+            $entity->setParentUser($user);
+        }
         if (property_exists($entity, 'updatedAt'))
         {
             $entity->setUpdatedAt(new \DateTime());

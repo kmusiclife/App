@@ -1,5 +1,6 @@
-{% extends "::base.html.twig" %}
+{% extends "AppUserBundle::layout.html.twig" %}
 
+{% block title %}{{ 'registration.title'|trans({}, 'AppUserBundle') }}{% endblock %}
 {% block body %}
 
 {{ facebook_initialize({'xfbml': true, 'fbAsyncInit': 'onFbInit();'}) }}

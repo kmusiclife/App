@@ -1,0 +1,11 @@
+app_common:
+    title:
+        image: "Images"
+    button:
+        label:
+            close: "Close"
+            delete: "Delete"
+            edit: "Edit"
+            back: "Back"
+            new: "Create new"
+            

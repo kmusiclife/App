@@ -1,15 +1,17 @@
 app_user:
     facebook:
         button:
-            connect: connect to facebook
-            disconnect: disconnect to facebook
+            connect: "connect to facebook"
+            disconnect: "disconnect to facebook"
+            login: "login on facebook"
+            
         notice:
             user:
-                disconnected: disconnected to facebook
-                connected: connected to facebook
-                require_auth: you require the authentication when you connect to this site
-                already_authed: you have already connected to facebook as other account
-                disconnect_require_password: you require your password of this site when you disconnect from this site
+                disconnected: "disconnected to facebook"
+                connected: "connected to facebook"
+                require_auth: "you require the authentication when you connect to this site"
+                already_authed: "you have already connected to facebook as other account"
+                disconnect_require_password: "you require your password of this site when you disconnect from this site"
     user:
         notice:
             set_password:
@@ -18,55 +20,64 @@ app_user:
 # Group
 group:
     edit:
-        submit: Update group
+        submit: "Update group"
     show:
-        name: Group name
+        name: "Group name"
     new:
-        submit: Create group
+        submit: "Create group"
     flash:
-        updated: The group has been updated
-        created: The group has been created
-        deleted: The group has been deleted
+        updated: "The group has been updated"
+        created: "The group has been created"
+        deleted: "The group has been deleted"
 
 # Security
-"Bad credentials": Invalid username or password
+"Bad credentials": "Invalid username or password"
 
 security:
     login:
         username: "Username:"
         password: "Password:"
-        remember_me: Remember me
-        submit: Login
+        remember_me: "Remember me"
+        submit: "Login"
 
 # Profile
 profile:
     show:
-        username: Username
-        email: Email
-        bio: Profile
-        firstname: First name
-        lastname: Last name
-        name: Your Name
+        username: "Username"
+        email: "Email"
+        bio: "Profile"
+        firstname: "First name"
+        lastname: "Last name"
+        name: "Your Name"
+        is_magazine: "Read Mail Magazine"
+        magazine_true: "Reading"
+        magazine_false: "No thanks"
+        password: "Password"
+        password_confirm: "Password Confirmation"
 
     edit:
-        submit: Update
+        submit: "Update"
     flash:
-        updated: The profile has been updated
+        updated: "The profile has been updated"
 
 # Password change
 change_password:
-    submit: Change password
+    submit: "Change password"
     flash:
-        success: The password has been changed
+        success: "The password has been changed"
+
+set_password:
+    title: "Setting your password"
 
 # Registration
 registration:
-    check_email: An email has been sent to %email%. It contains an activation link you must click to activate your account.
-    confirmed: Congrats %username%, your account is now activated.
-    back: Back to the originating page.
-    submit: Register
+    title: "Registration form"
+    check_email: "An email has been sent to %email%. It contains an activation link you must click to activate your account."
+    confirmed: "Congrats %username%, your account is now activated."
+    back: "Back to the originating page."
+    submit: "Register"
     flash:
-        user_created: The user has been created successfully
+        user_created: "The user has been created successfully"
     email:
         subject: Welcome %username%!
         message: |

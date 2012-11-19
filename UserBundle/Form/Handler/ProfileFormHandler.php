@@ -9,7 +9,8 @@ class ProfileFormHandler extends BaseHandler
 {
       public function process(UserInterface $user)
       {
-            parent::process($user); // sound better of course : )
+            return parent::process($user); // sound better of course : )
+            
       }
       protected function onSuccess(UserInterface $user)
       {

@@ -1,0 +1,16 @@
+app_upload:
+    form:
+        image:
+            title: "アイルアップロード"
+            button:
+                submit: "送信"
+                new: "新規作成"
+                add: "追加..."
+                edit: "編集"
+                delete: "削除"
+                cancel: "キャンセル"
+                start: "スタート"
+    layout:
+        image:
+            title:
+                new: "ファイルアップロード"

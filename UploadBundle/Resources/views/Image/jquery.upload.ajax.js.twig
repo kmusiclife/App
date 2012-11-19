@@ -1,0 +1,41 @@
+$(function () {
+    
+    var data = {'mode': 'list'};
+    $.ajax({
+        
+        type: 'get',
+        url: '{{ path('app_upload_ajax_js')|raw }}',
+        data: data,
+        dataType: 'json',
+        beforeSend: function(){
+            $('#ajax-image-list').append('<div class="upload-loader">&nbsp;</div>');
+            $('.upload-loader').show();
+        },
+        success: function(jsons){
+            
+            $.each(jsons, function(i, json){
+                html = $('#template-img').tmpl(json);
+                $('#ajax-image-list').append(html).find('img:last-child').click(function(){
+                    
+                    tmdl = $('#template-modal').tmpl(json).appendTo('body');
+                    tmdl.find('.close').click(function(){ 
+                        $('.modal').hide();
+                    });
+                    tmdl.find('.auto-select').mouseup(function(){
+                        $(this).select();
+                    });
+                    
+                });
+            });
+        },
+        complete: function(){
+            $('#ajax-image-list img').css('cursor', 'pointer');
+        },
+        error: function(error){
+        }
+        
+    }).done(function(){
+        $('.upload-loader').hide();
+    });
+    
+});

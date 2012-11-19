@@ -4,11 +4,12 @@ namespace App\UploadBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use App\UploadBundle\Entity\Image;
 use App\UploadBundle\Form\ImageType;
+
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Image controller.
@@ -16,15 +17,41 @@ use App\UploadBundle\Form\ImageType;
  */
 class ImageController extends Controller
 {
-    
+
+    public function ajaxAction(Request $request)
+    {
+
+        switch($request->get('mode'))
+        {
+            case 'list':
+
+                $jsons = array();
+                $em = $this->getDoctrine()->getManager();
+                $entities = $em->getRepository('AppUploadBundle:Image')->findBy(
+                    array('createdUser'=>$this->getUser()),
+                    array('id'=>'desc')
+                );
+                $response = $this->render('AppUploadBundle:Image:jquery.upload.ajax.list.js.twig', array(
+                    'entities' => $entities
+                ));
+                break;
+                
+            default:
+                $response = $this->render('AppUploadBundle:Image:jquery.upload.ajax.js.twig');
+                break;
+                
+        }
+        $response->headers->set('Content-Type', "text/javascript");
+        return $response;
+    }
     public function jsAction(Request $request)
     {
         $response = $this->render('AppUploadBundle:Image:jquery.upload.main.js.twig');
         $response->headers->set('Content-Type', "text/javascript");
         return $response;
     }
-    public function indexAction(Request $request)
-    {
+    public function indexAction()
+    {   
         return $this->render('AppUploadBundle:Image:index.html.twig');
     }
     public function listAction(Request $request)
@@ -52,8 +79,8 @@ class ImageController extends Controller
                 
                 $entity  = new Image();
                 
-                // $file->getMimeType();
-                // throw new Exception("");
+                // echo $file->getMimeType();
+                // throw new Exception("File size limit not defined for upload");                
                 
                 $filename = uniqid().'.'.$file->guessExtension();
                 $uploadDir = $entity->getUploadRootDir() . $entity->getUploadDir();
@@ -78,6 +105,25 @@ class ImageController extends Controller
         }
         return $this->render('AppUploadBundle:Image:result.json.twig', array(
             'entities' => $entities
+        ));
+    }
+    public function editAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('AppUploadBundle:Image')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Image entity.');
+        }
+
+        $editForm = $this->createForm(new ImageType(), $entity);
+        $deleteForm = $this->createDeleteForm($id);
+
+        return $this->render('AppUploadBundle:Image:edit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
         ));
     }
     public function updateAction(Request $request, $id)

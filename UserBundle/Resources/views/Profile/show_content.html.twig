@@ -1,11 +1,62 @@
-<div class="fos_user_user_show">
-    
-    <p>{{ 'profile.show.username'|trans({}, 'AppUserBundle') }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans({}, 'AppUserBundle') }}: {{ user.email }}</p>
-    
-    <p>{{ 'profile.show.firstname'|trans({}, 'AppUserBundle') }}: {{ user.firstname }}</p>
-    <p>{{ 'profile.show.lastname'|trans({}, 'AppUserBundle') }}: {{ user.lastname }}</p>
-    
-    <p>{{ 'profile.show.bio'|trans({}, 'AppUserBundle') }}: {{ user.bio }}</p>
-    
-</div>
+<table class="table">
+
+
+<tr>
+  <td class="span3">{{ 'profile.show.username'|trans({}, 'AppUserBundle') }}</td>
+  <td class="span6">
+    {{ user.username }}
+  </td>
+</tr>
+
+
+<tr>
+  <td>{{ 'profile.show.email'|trans({}, 'AppUserBundle') }}</td>
+  <td>{{ user.email }}</td>
+</tr>
+
+
+
+<tr>
+  <td>{{ 'profile.show.firstname'|trans({}, 'AppUserBundle') }}</td>
+  <td>{{ user.firstname }}</td>
+</tr>
+
+<tr>
+  <td>{{ 'profile.show.lastname'|trans({}, 'AppUserBundle') }}</td>
+  <td>{{ user.lastname }}</td>
+</tr>
+
+
+<tr>
+  <td>{{ 'profile.show.bio'|trans({}, 'AppUserBundle') }}</td>
+  <td>{{ user.bio|mb_substr(0, 512) }}</td>
+</tr>
+
+<tr>
+  <td>{{ 'profile.show.is_magazine'|trans({}, 'AppUserBundle') }}</td>
+  <td>{{ user.isMagazineLabel|trans({}, 'AppUserBundle') }}</td>
+</tr>
+
+<tr>
+  <td>facebook</td>
+  <td>
+    {% if(app.user.facebookId) %}
+    <span id="fbLogout" onclick="goLogOut()"><a class="fb_button fb_button_medium"><span class="fb_button_text">{{ 'app_user.facebook.button.disconnect'|trans({}, 'AppUserBundle') }}</span></a></span>
+    {% else %}
+    {{ facebook_login_button({'autologoutlink': false, 'label' : 'app_user.facebook.button.connect'|trans({}, 'AppUserBundle')}) }}
+    {% endif %}
+  </td>
+</tr>
+
+
+<tr>
+  <td>&nbsp;</td>
+  <td>
+    <a class="btn" href="{{ path('fos_user_profile_edit') }}">{{ 'layout.edit'|trans({}, 'AppUserBundle') }}</a>
+  </td>
+</tr>
+
+
+
+</table>
+

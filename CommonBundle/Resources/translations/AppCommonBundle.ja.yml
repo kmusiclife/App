@@ -1,0 +1,11 @@
+app_common:
+    title:
+        image: "画像"
+    button:
+        label:
+            close: "閉じる"
+            delete: "削除"
+            edit: "編集"
+            back: "前に戻る"
+            new: "新規作成"
+            

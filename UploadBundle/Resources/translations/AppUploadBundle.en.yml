@@ -1,0 +1,16 @@
+app_upload:
+    form:
+        image:
+            title: "Upload Files"
+            button:
+                submit: "Submit"
+                new: "Create new"
+                add: "Add files..."
+                edit: "Edit"
+                delete: "Delete"
+                cancel: "Cancel upload"
+                start: "Start upload"
+    layout:
+        image:
+            title:
+                new: "Upload Files"

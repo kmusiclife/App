@@ -22,4 +22,9 @@ app_upload_main_js:
     pattern: /js/jquery.upload.main.js
     defaults:  { _controller: "AppUploadBundle:Image:js" }
     requirements: { _method: get }
-    
+
+app_upload_ajax_js:
+    pattern: /js/jquery.ajax.main.js
+    defaults:  { _controller: "AppUploadBundle:Image:ajax" }
+    requirements: { _method: get }
+

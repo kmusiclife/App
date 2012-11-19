@@ -25,7 +25,7 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
+    
     /**
      * @var string
      *
@@ -83,18 +83,18 @@ class User extends BaseUser
      * @ORM\Column(name="updatedAt", type="datetime")
      */
     private $updatedAt;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
     
-    public function serialize()
-    {
-        return serialize(array($this->facebookId, parent::serialize()));
-    }
-
-    public function unserialize($data)
-    {
-        list($this->facebookId, $parentData) = unserialize($data);
-        parent::unserialize($parentData);
-    }
-
     /**
      * @return string
      */
@@ -280,6 +280,53 @@ class User extends BaseUser
     }
 
     /**
+     * Set isMagazine
+     *
+     * @param boolean $isMagazine
+     * @return User
+     */
+    public function setIsMagazine($isMagazine)
+    {
+        $this->isMagazine = $isMagazine;
+    
+        return $this;
+    }
+
+    /**
+     * Get isMagazine
+     *
+     * @return boolean 
+     */
+    public function getIsMagazine()
+    {
+        return $this->isMagazine;
+    }
+    
+    public function getIsMagazineLabel()
+    {
+        if($this->isMagazine){
+            return 'profile.show.magazine_true';
+        }
+        return 'profile.show.magazine_false';
+    }
+
+    /**
+     * @ORM\Column(name="isMagazine", type="boolean", nullable=true)
+     */
+    private $isMagazine = true;
+    
+    public function serialize()
+    {
+        return serialize(array($this->facebookId, parent::serialize()));
+    }
+
+    public function unserialize($data)
+    {
+        list($this->facebookId, $parentData) = unserialize($data);
+        parent::unserialize($parentData);
+    }
+    
+    /**
      * @param Array
      */
     public function setFBData($fbdata)
@@ -321,4 +368,5 @@ class User extends BaseUser
         }
     }
     
+
 }

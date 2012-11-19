@@ -1,7 +1,12 @@
 {% extends "AppUploadBundle::layout.html.twig" %}
 
+
+{% block title %}{{ 'app_upload.layout.image.title.new'|trans({}, 'AppUploadBundle') }}{% endblock %}
 {% block stylesheets%}
+
+<!--
 <link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap.min.css">
+-->
 <!-- Bootstrap CSS fixes for IE6 -->
 <!--[if lt IE 7]><link rel="stylesheet" href="http://blueimp.github.com/cdn/css/bootstrap-ie6.min.css"><![endif]-->
 {% stylesheets filter='cssrewrite' 
@@ -39,20 +44,20 @@
         <div class="span7">
             <span class="btn btn-success fileinput-button">
                 <i class="icon-plus icon-white"></i>
-                <span>Add files...</span>
+                <span>{{ 'app_upload.form.image.button.add'|trans({}, 'AppUploadBundle') }}</span>
                 <input type="file" name="files[]" data-url="{{ path('upload_create') }}" multiple>
             </span>
             <button type="submit" class="btn btn-primary start">
                 <i class="icon-upload icon-white"></i>
-                <span>Start upload</span>
+                <span>{{ 'app_upload.form.image.button.start'|trans({}, 'AppUploadBundle') }}</span>
             </button>
             <button type="reset" class="btn btn-warning cancel">
                 <i class="icon-ban-circle icon-white"></i>
-                <span>Cancel upload</span>
+                <span>{{ 'app_upload.form.image.button.cancel'|trans({}, 'AppUploadBundle') }}</span>
             </button>
             <button type="button" class="btn btn-danger delete">
                 <i class="icon-trash icon-white"></i>
-                <span>Delete</span>
+                <span>{{ 'app_upload.form.image.button.delete'|trans({}, 'AppUploadBundle') }}</span>
             </button>
             <input type="checkbox" class="toggle">
         </div>
@@ -87,7 +92,7 @@
             <td class="start">{% if (!o.options.autoUpload) { %}
                 <button class="btn btn-primary">
                     <i class="icon-upload icon-white"></i>
-                    <span>Start</span>
+                    <span>{% endraw %}{{ 'app_upload.form.image.button.start'|trans({}, 'AppUploadBundle') }}{% raw %}</span>
                 </button>
             {% } %}</td>
         {% } else { %}
@@ -96,7 +101,7 @@
         <td class="cancel">{% if (!i) { %}
             <button class="btn btn-warning">
                 <i class="icon-ban-circle icon-white"></i>
-                <span>Cancel</span>
+                <span>{% endraw %}{{ 'app_upload.form.image.button.cancel'|trans({}, 'AppUploadBundle') }}{% raw %}</span>
             </button>
         {% } %}</td>
     </tr>
@@ -124,7 +129,7 @@
         <td class="delete">
             <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"{% if (file.delete_with_credentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
                 <i class="icon-trash icon-white"></i>
-                <span>Delete</span>
+                <span>{% endraw %}{{ 'app_upload.form.image.button.delete'|trans({}, 'AppUploadBundle') }}{% raw %}</span>
             </button>
             <input type="checkbox" name="delete" value="1">
         </td>

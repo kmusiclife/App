@@ -3,6 +3,8 @@ app_user:
         button:
             connect: facebookと接続する
             disconnect: facebookと切断する
+            loing: facebookでログイン
+            
         notice:
             user:
                 disconnected: facebookとの接続を解除しました。
@@ -42,13 +44,18 @@ security:
 # Profile
 profile:
     show:
-        username: ユーザー名
-        email: メールアドレス
-        bio: プロフィール
-        firstname: 性
-        lastname: 名
-        name: お名前
-
+        username: "ユーザー名"
+        email: "メールアドレス"
+        bio: "プロフィール"
+        firstname: "性"
+        lastname: "名"
+        name: "お名前"
+        is_magazine: "メールマガジン購読"
+        magazine_true: "購読する"
+        magazine_false: "購読しない"
+        password: "パスワード"
+        password_confirm: "パスワード確認"
+        
     edit:
         submit: 更新
     flash:
@@ -57,12 +64,17 @@ profile:
 
 # Password change
 change_password:
-    submit: パスワードの変更
+    submit: "パスワードの変更"
     flash:
-        success: パスワードが変更されました
+        success: "パスワードが変更されました"
+
+set_password:
+    title: "パスワードの設定"
 
 # Registration
 registration:
+    
+    title: "ユーザ登録"
     check_email: %email% 宛にメールを送信しました。メールに記載された確認 URL にアクセスして、アカウントを有効化してください。
     confirmed: %username% さんのアカウントの確認が完了しました。
     back: 元のページに戻る
@@ -110,6 +122,7 @@ layout:
     profile: プロフィール
     edit: 編集
     login_via_facebook: facebookでログイン
+    
 
 # Form field labels
 form:

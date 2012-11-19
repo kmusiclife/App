@@ -1,0 +1,18 @@
+[
+{% for entity in entities %}
+{
+  "url": "{{ entity.uploadpath|raw }}",
+  "name": "{{ entity.title|raw }}",
+  "size": {{ entity.size|raw }},
+  "type": "{{ entity.type|raw }}",
+  "thumbnail700px": "{{ entity.uploadpath|imagine_filter('thumbnail700px', true)|raw }}",
+  "thumbnail500px": "{{ entity.uploadpath|imagine_filter('thumbnail500px', true)|raw }}",
+  "thumbnail250px": "{{ entity.uploadpath|imagine_filter('thumbnail250px', true)|raw }}",
+  "square150px": "{{ entity.uploadpath|imagine_filter('square150px', true)|raw }}",
+  "thumbnail_url": "{{ entity.uploadpath|imagine_filter('square25px', true)|raw }}",
+  "delete_url": "{{ path('upload_delete', {'id':entity.id})|raw }}",
+  "delete_type": "DELETE"
+}
+{% if loop.index != loop.length %},{% endif %}
+{% endfor %}
+]

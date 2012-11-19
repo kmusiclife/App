@@ -18,30 +18,77 @@
       window.location.href = "{{ path('_security_check') }}";
   }
 </script>
-{{ facebook_initialize({'xfbml': true, 'fbAsyncInit': 'onFbInit();'}) }}
 
-<!-- FOSFacebook login -->
-{{ facebook_login_button({'autologoutlink': false}) }}
+
+<div class="row">
+
+<div class="span2">&nbsp;</div>
+<div class="span7">
 
 {% if error %}
-    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+<div class="row">
+    <div class="alert alert-danger">{{ error|trans({}, 'FOSUserBundle') }}</div>
+</div>
 {% endif %}
 
-<!-- Appfacebook login -->
-<a href="{{loginUrl}}" class="btn">login via facebook</a>
 
-<form action="{{ path("fos_user_security_check") }}" method="post">
+<form action="{{ path("fos_user_security_check") }}" method="post" class="{{ formclass }}">
+    
     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    
+    <div class="control-group">
+        <label class="control-label">
+            <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+        </label>
+        <div class="controls">
+            <input type="text" id="username" name="_username" value="{{ last_username }}" />
+        </div>
+    </div>
 
-    <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+    <div class="control-group">
+        <label class="control-label">
+            <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+        </label>
+        <div class="controls">
+            <input type="password" id="password" name="_password" />
+        </div>
+    </div>
 
-    <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
-    <input type="password" id="password" name="_password" />
 
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+    <div class="control-group">
+        <label class="control-label">&nbsp;</label>
+        <div class="controls inline">
+            {#
+            {{ facebook_initialize({'xfbml': true, 'fbAsyncInit': 'onFbInit();'}) }}
+            {{ facebook_login_button({'autologoutlink': false}) }}
+            #}
+            <a href="{{loginUrl}}" class="btn btn-primary">{{ 'app_user.facebook.button.login'|trans({}, 'AppUserBundle') }}</a>
+        </div>
+    </div>
 
-    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+    
+    <div class="control-group">
+        <label class="control-label">&nbsp;</label>
+        <div class="controls inline">
+            <label for="remember_me">
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+            </label>
+        </div>
+    </div>
+        
+    <div class="control-group">        
+        <label class="control-label">
+            &nbsp;
+        </label>
+        <div class="controls inline">
+            <input type="submit" class="btn" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+        </div>
+    </div>
+    
+    
 </form>
+</div>
+
+</div>
 {% endblock fos_user_content %}
